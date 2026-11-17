@@ -99,7 +99,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-16 sm:py-20 bg-white border-t border-[#DCE8F3]"
+      className="py-11 sm:py-16 lg:py-20 bg-white border-t border-[#DCE8F3]"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}

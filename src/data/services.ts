@@ -1,3 +1,5 @@
+import type { FeatureIconKey } from "@/components/FeatureIcon";
+
 export type ServiceIconKey =
   | "user"
   | "building"
@@ -14,6 +16,12 @@ export type ServiceIconKey =
   | "file-spreadsheet"
   | "newspaper";
 
+export interface ServiceFeatureCard {
+  title: string;
+  description: string;
+  icon: FeatureIconKey;
+}
+
 export interface WebsiteService {
   slug: string;
   title: string;
@@ -22,8 +30,12 @@ export interface WebsiteService {
   cardDescription: string;
   detailedExplanation: string;
   features: string[];
+  featureCards: ServiceFeatureCard[];
   idealFor: string[];
   benefits: string[];
+  mobileHighlight: string;
+  integrations: string[];
+  securityUsability: string[];
   icon: ServiceIconKey;
   image: string;
   imageAlt: string;
@@ -52,6 +64,38 @@ export const SERVICES: WebsiteService[] = [
       "Contact form",
       "Social media links",
     ],
+    featureCards: [
+      {
+        title: "Personal Introduction & Bio",
+        description: "A confident opening hero and About Me section that immediately communicates your role, strengths and career focus.",
+        icon: "user-check",
+      },
+      {
+        title: "Visual Project Showcase",
+        description: "Structured project cards and case-study summaries that highlight completed work, outcomes and tools used.",
+        icon: "layout-grid",
+      },
+      {
+        title: "Skills & Expertise Matrix",
+        description: "Organized technical, creative or consulting skill groups so employers and clients scan your capabilities quickly.",
+        icon: "layers",
+      },
+      {
+        title: "Downloadable CV & Resume",
+        description: "One-tap PDF resume access alongside a clean timeline of education, certifications and work experience.",
+        icon: "file-text",
+      },
+      {
+        title: "Direct Enquiry & Contact Form",
+        description: "Validated contact options allowing recruiters and prospective clients to reach you effortlessly.",
+        icon: "mail",
+      },
+      {
+        title: "Professional Profile Links",
+        description: "Clean outbound links to LinkedIn, GitHub, Behance or WhatsApp for seamless follow-up conversations.",
+        icon: "share-2",
+      },
+    ],
     idealFor: [
       "Students",
       "Freelancers",
@@ -65,6 +109,20 @@ export const SERVICES: WebsiteService[] = [
       "Present real work samples, case studies and credentials in one structured place.",
       "Share your professional profile effortlessly via WhatsApp, email or LinkedIn.",
       "Build lasting personal brand credibility across desktop and mobile devices.",
+    ],
+    mobileHighlight:
+      "Recruiters and clients often open portfolio links directly from WhatsApp or LinkedIn on their phones. Every bio, project card and resume download button is optimized for fast thumb scrolling and crisp readability on mobile screens.",
+    integrations: [
+      "WhatsApp direct chat button",
+      "Downloadable PDF CV / resume link",
+      "LinkedIn, GitHub & professional social profiles",
+      "Email contact & validated enquiry form",
+    ],
+    securityUsability: [
+      "HTTPS / SSL-ready deployment configuration",
+      "Clean, distraction-free reading hierarchy",
+      "Fast-loading optimized imagery for mobile networks",
+      "SEO-structured name and profession metadata",
     ],
     icon: "user",
     image: "/images/service-portfolio.jpg",
@@ -94,6 +152,38 @@ export const SERVICES: WebsiteService[] = [
       "WhatsApp integration",
       "Enquiry forms",
     ],
+    featureCards: [
+      {
+        title: "Executive Corporate Homepage",
+        description: "A high-trust opening banner and structured overview that communicates what your company offers within seconds.",
+        icon: "building",
+      },
+      {
+        title: "Services & Solutions Pages",
+        description: "Clear presentation of each service or product line so prospective clients understand how you solve their problems.",
+        icon: "briefcase",
+      },
+      {
+        title: "Company Profile & Mission",
+        description: "Dedicated About Us storytelling highlighting your expertise, values, leadership and brand positioning.",
+        icon: "globe",
+      },
+      {
+        title: "WhatsApp Lead Integration",
+        description: "Prominent WhatsApp buttons that connect interested visitors directly to your business desk in one tap.",
+        icon: "message-circle",
+      },
+      {
+        title: "Validated Enquiry Forms",
+        description: "Structured consultation and quote request forms that capture customer details cleanly and reliably.",
+        icon: "mail",
+      },
+      {
+        title: "Location & Contact Details",
+        description: "Clear office address, working hours, email links and phone numbers presented cleanly across every page.",
+        icon: "map-pin",
+      },
+    ],
     idealFor: [
       "Small businesses",
       "Startups",
@@ -106,6 +196,20 @@ export const SERVICES: WebsiteService[] = [
       "Explain your services and offerings clearly around the clock, even outside office hours.",
       "Capture direct customer leads through WhatsApp integration and structured enquiry forms.",
       "Scale effortlessly as your company adds new services, branches or team members.",
+    ],
+    mobileHighlight:
+      "Decision-makers frequently look up companies on mobile before calling or requesting a quote. Your corporate hero, service cards, phone number and WhatsApp CTA stay crisp and accessible on every screen size.",
+    integrations: [
+      "Direct WhatsApp business enquiry buttons",
+      "Business email & structured quote forms",
+      "Google Maps office location link",
+      "Search engine metadata & Open Graph previews",
+    ],
+    securityUsability: [
+      "HTTPS secure transport readiness",
+      "Client-side validated enquiry forms",
+      "Intuitive sticky navigation for fast browsing",
+      "Accessible typography and high-contrast buttons",
     ],
     icon: "building",
     image: "/images/service-business.jpg",
@@ -135,6 +239,38 @@ export const SERVICES: WebsiteService[] = [
       "Order management",
       "Admin dashboard",
     ],
+    featureCards: [
+      {
+        title: "Product Catalogue & Categories",
+        description: "Organize items by category with crisp product imagery, pricing, descriptions and availability labels.",
+        icon: "shopping-bag",
+      },
+      {
+        title: "Smooth Shopping Cart",
+        description: "Intuitive add-to-cart, quantity updates and live subtotal calculation designed for effortless mobile shopping.",
+        icon: "layout-grid",
+      },
+      {
+        title: "Streamlined Checkout Flow",
+        description: "Clear delivery address capture and order summary screens that minimize checkout drop-offs.",
+        icon: "credit-card",
+      },
+      {
+        title: "Payment Gateway Readiness",
+        description: "Structured checkout integration support for Paystack, Flutterwave, bank transfers or pay-on-delivery flows.",
+        icon: "shield-check",
+      },
+      {
+        title: "Customer Accounts & Orders",
+        description: "Shoppers can track order status, revisit past purchases and save shipping information securely.",
+        icon: "user-check",
+      },
+      {
+        title: "Store Admin Dashboard",
+        description: "Centralized product updates, price adjustments, category control and incoming order management.",
+        icon: "bar-chart",
+      },
+    ],
     idealFor: [
       "Fashion stores",
       "Electronics vendors",
@@ -146,6 +282,20 @@ export const SERVICES: WebsiteService[] = [
       "Give shoppers an intuitive category browsing, search and checkout experience on mobile.",
       "Track orders, update product prices and manage stock from a clean admin dashboard.",
       "Accept digital payments securely and streamline order fulfillment.",
+    ],
+    mobileHighlight:
+      "Most online shoppers browse and place orders from smartphones. Product grids, category tabs, cart drawers and checkout buttons are sized for comfortable one-hand mobile shopping.",
+    integrations: [
+      "Online payment gateways (Paystack, Flutterwave, Stripe)",
+      "WhatsApp order support & customer assistance",
+      "Automated order summary notifications",
+      "Product search & category filtering",
+    ],
+    securityUsability: [
+      "Secure HTTPS checkout architecture",
+      "Validated shipping and billing inputs",
+      "Clear pricing, cart subtotals and order confirmation steps",
+      "Optimized product thumbnails for fast catalogue loading",
     ],
     icon: "shopping-cart",
     image: "/images/service-ecommerce.jpg",
@@ -174,6 +324,38 @@ export const SERVICES: WebsiteService[] = [
       "Contact information",
       "Admission enquiries",
     ],
+    featureCards: [
+      {
+        title: "Admissions Banner & Guide",
+        description: "Prominent enrollment announcements, entry requirements, term dates and direct admission enquiry buttons.",
+        icon: "graduation-cap",
+      },
+      {
+        title: "Academic Programmes",
+        description: "Clear breakdown of Nursery, Primary, Secondary or College curricula, subjects and learning pathways.",
+        icon: "book-open",
+      },
+      {
+        title: "School News & Announcements",
+        description: "Organized updates for term resumptions, academic calendars, competitions and parent notices.",
+        icon: "calendar",
+      },
+      {
+        title: "Campus & Activity Gallery",
+        description: "Visual showcase of classrooms, laboratories, libraries, sports facilities and student life.",
+        icon: "image",
+      },
+      {
+        title: "School Profile & Leadership",
+        description: "Welcome message, school vision, core values and accreditation overview that reassure prospective parents.",
+        icon: "building",
+      },
+      {
+        title: "Parent Enquiry & Contact Desk",
+        description: "Direct WhatsApp admissions support, school phone lines, email contact and campus directions.",
+        icon: "message-circle",
+      },
+    ],
     idealFor: [
       "Nursery, primary and secondary schools",
       "Colleges",
@@ -184,6 +366,20 @@ export const SERVICES: WebsiteService[] = [
       "Simplify admission enquiries with dedicated banners and direct contact options.",
       "Keep students and families informed with organized school news and announcements.",
       "Showcase your learning environment, classrooms and campus facilities professionally.",
+    ],
+    mobileHighlight:
+      "Parents researching schools check admission details and term announcements primarily on mobile phones. Navigation, admission banners and contact links are structured for instant mobile clarity.",
+    integrations: [
+      "Direct WhatsApp admissions office link",
+      "Online admission enquiry form",
+      "Downloadable prospectus & term calendar links",
+      "Campus location map and contact details",
+    ],
+    securityUsability: [
+      "Clear parent-friendly navigation structure",
+      "Validated enquiry inputs to prevent incomplete applications",
+      "Fast mobile rendering on low-bandwidth connections",
+      "Accessible headings and readable font sizing for all families",
     ],
     icon: "graduation-cap",
     image: "/images/service-school.jpg",
@@ -212,6 +408,38 @@ export const SERVICES: WebsiteService[] = [
       "Opening hours",
       "Reservation enquiries",
     ],
+    featureCards: [
+      {
+        title: "Digital Food & Drink Menu",
+        description: "Categorized starters, mains, grills, platters and drinks with transparent pricing and appetizing descriptions.",
+        icon: "utensils",
+      },
+      {
+        title: "Appetizing Dish Showcase",
+        description: "High-clarity food photography sections designed to highlight signature meals and chef specials.",
+        icon: "image",
+      },
+      {
+        title: "Instant WhatsApp Ordering",
+        description: "One-tap ordering buttons that send meal requests directly to your kitchen or delivery desk on WhatsApp.",
+        icon: "message-circle",
+      },
+      {
+        title: "Table & Event Reservations",
+        description: "Simple reservation enquiry sections for dine-in groups, celebrations and catering requests.",
+        icon: "calendar",
+      },
+      {
+        title: "Opening Hours & Availability",
+        description: "Upfront daily opening times and delivery coverage details so diners always know when you are open.",
+        icon: "clock",
+      },
+      {
+        title: "Location & Directions",
+        description: "Clear street address, landmarks and map links making it easy for diners to walk right in.",
+        icon: "map-pin",
+      },
+    ],
     idealFor: [
       "Restaurants",
       "Cafes",
@@ -223,6 +451,20 @@ export const SERVICES: WebsiteService[] = [
       "Enable direct WhatsApp meal orders without losing commission to third-party apps.",
       "Help customers quickly find your address, opening hours and table booking options.",
       "Attract event catering and group dining enquiries with a polished brand presence.",
+    ],
+    mobileHighlight:
+      "Hungry diners search menus and place orders on their phones while on the move. Your digital menu, dish prices and WhatsApp Order button load rapidly with zero pinching or zooming required.",
+    integrations: [
+      "Direct WhatsApp meal ordering & catering requests",
+      "Google Maps directions to your dining location",
+      "Table reservation enquiry form",
+      "QR code menu link compatibility for in-house tables",
+    ],
+    securityUsability: [
+      "Readable menu typography with clear price alignment",
+      "Fast-loading compressed food photography",
+      "Simple one-tap ordering and phone links",
+      "Consistent HTTPS security and reliable mobile layout",
     ],
     icon: "utensils",
     image: "/images/service-restaurant.jpg",
@@ -251,6 +493,38 @@ export const SERVICES: WebsiteService[] = [
       "Property enquiry forms",
       "WhatsApp contact",
     ],
+    featureCards: [
+      {
+        title: "Structured Property Listings",
+        description: "Detailed cards showing price, location, bedrooms, property type and status for houses, flats and land.",
+        icon: "home",
+      },
+      {
+        title: "Sales, Rent & Shortlet Filters",
+        description: "Easy category separation and search filtering by budget, neighbourhood and listing type.",
+        icon: "search",
+      },
+      {
+        title: "High-Resolution Property Galleries",
+        description: "Clean visual framing for exterior, living space and compound photographs without distortion.",
+        icon: "image",
+      },
+      {
+        title: "Inspection & Buyer Enquiries",
+        description: "Dedicated enquiry forms allowing serious buyers and tenants to request viewings immediately.",
+        icon: "mail",
+      },
+      {
+        title: "Direct Agent WhatsApp Contact",
+        description: "Listing-aware WhatsApp buttons connecting prospects directly to your sales agents.",
+        icon: "message-circle",
+      },
+      {
+        title: "Neighbourhood & Location Info",
+        description: "Clear area highlights, proximity details and office contact information that build buyer confidence.",
+        icon: "map-pin",
+      },
+    ],
     idealFor: [
       "Realtors",
       "Property agents",
@@ -262,6 +536,20 @@ export const SERVICES: WebsiteService[] = [
       "Let buyers and tenants filter by property type, category and budget effortlessly.",
       "Receive qualified inspection requests directly via enquiry forms and WhatsApp.",
       "Build agency authority that attracts both property owners and serious buyers.",
+    ],
+    mobileHighlight:
+      "Property hunters browse listings on mobile while comparing areas and prices. Clean listing cards, crisp prices and instant WhatsApp inspection buttons make mobile property discovery effortless.",
+    integrations: [
+      "WhatsApp direct property inspection links",
+      "Property search & category filter controls",
+      "Validated viewing request forms",
+      "Neighbourhood map & agency contact links",
+    ],
+    securityUsability: [
+      "Clear verified-listing presentation and transparent specs",
+      "Fast responsive image loading across large galleries",
+      "Validated buyer enquiry forms with clear prompts",
+      "HTTPS-ready professional corporate architecture",
     ],
     icon: "home",
     image: "/images/service-realestate.jpg",
@@ -291,6 +579,38 @@ export const SERVICES: WebsiteService[] = [
       "WhatsApp reservations",
       "Hotel location",
     ],
+    featureCards: [
+      {
+        title: "Rooms & Suites Showcase",
+        description: "Present Standard, Deluxe, Executive and VIP suites with crisp photos, guest capacity and nightly rates.",
+        icon: "bed",
+      },
+      {
+        title: "Facilities & Guest Amenities",
+        description: "Highlight dining, Wi-Fi, swimming pool, conference halls, parking and 24/7 front-desk services clearly.",
+        icon: "building",
+      },
+      {
+        title: "Direct Booking Enquiries",
+        description: "Capture check-in dates, room preference and guest counts directly without third-party booking commissions.",
+        icon: "calendar",
+      },
+      {
+        title: "Instant WhatsApp Reservations",
+        description: "Enable travellers to confirm room availability with your reception desk in one tap.",
+        icon: "message-circle",
+      },
+      {
+        title: "Check-In & Stay Policies",
+        description: "Transparent check-in/out times, breakfast inclusions and corporate stay details upfront.",
+        icon: "clock",
+      },
+      {
+        title: "Hotel Location & Directions",
+        description: "Clear address, airport proximity and map access helping guests arrive smoothly.",
+        icon: "map-pin",
+      },
+    ],
     idealFor: [
       "Hotels",
       "Resorts",
@@ -302,6 +622,20 @@ export const SERVICES: WebsiteService[] = [
       "Highlight suites, dining areas, conference halls and guest amenities beautifully.",
       "Provide clear nightly rates, check-in details and location guidance upfront.",
       "Convert mobile travellers quickly with instant WhatsApp reservation buttons.",
+    ],
+    mobileHighlight:
+      "Travellers frequently compare rooms and reserve stays from smartphones at airports or on the road. Room galleries, nightly pricing and WhatsApp booking buttons are optimized for fast mobile booking.",
+    integrations: [
+      "Direct WhatsApp front-desk reservation links",
+      "Room booking enquiry & corporate stay forms",
+      "Google Maps directions & landmark guide",
+      "Direct reception email & click-to-call support",
+    ],
+    securityUsability: [
+      "Clear room rate visibility with zero confusing clutter",
+      "HTTPS secure booking enquiry handling",
+      "High-clarity interior photography preserving true room proportions",
+      "Mobile-friendly date and room selection experience",
     ],
     icon: "bed",
     image: "/images/service-hotel.jpg",
@@ -330,6 +664,38 @@ export const SERVICES: WebsiteService[] = [
       "Student progress tracking",
       "Quizzes and assessments",
     ],
+    featureCards: [
+      {
+        title: "Course Catalogue & Enrolment",
+        description: "Organize courses by topic with syllabus previews, lesson counts, instructor bios and clear enrolment CTAs.",
+        icon: "book-open",
+      },
+      {
+        title: "Structured Video Lessons",
+        description: "Clean module-by-module lesson layouts supporting video playback alongside reading notes and downloads.",
+        icon: "play-circle",
+      },
+      {
+        title: "Student Registration & Portal",
+        description: "Dedicated learner accounts allowing registered students to resume lessons right where they stopped.",
+        icon: "users",
+      },
+      {
+        title: "Progress Tracking & Milestones",
+        description: "Visual completion bars and lesson checklists that keep students motivated through every course module.",
+        icon: "bar-chart",
+      },
+      {
+        title: "Quizzes & Assessments",
+        description: "Knowledge checks, module quizzes and completion certificates to validate learner outcomes.",
+        icon: "award",
+      },
+      {
+        title: "Instructor Management Console",
+        description: "Organized tools for publishing lessons, updating study guides and overseeing enrolled learners.",
+        icon: "layers",
+      },
+    ],
     idealFor: [
       "Training centres",
       "Tutors",
@@ -341,6 +707,20 @@ export const SERVICES: WebsiteService[] = [
       "Organize video lessons, downloadable study guides and assessments in one portal.",
       "Track student enrollment and learning progress from a central instructor workspace.",
       "Monetize your teaching expertise with a branded platform you fully own.",
+    ],
+    mobileHighlight:
+      "Students watch lessons and review study materials on phones during commutes and study breaks. Lesson lists, video players and progress bars adapt cleanly to portrait and landscape mobile viewing.",
+    integrations: [
+      "Course payment & student enrolment flows",
+      "Video hosting & downloadable PDF study materials",
+      "WhatsApp learner support & cohort announcements",
+      "Student email onboarding & completion notices",
+    ],
+    securityUsability: [
+      "Protected student and instructor portal structure",
+      "Distraction-free lesson viewer for better focus",
+      "Responsive layout built for phones, tablets and laptops",
+      "Clear module progression and accessible navigation controls",
     ],
     icon: "monitor-play",
     image: "/images/service-elearning.jpg",
@@ -369,6 +749,38 @@ export const SERVICES: WebsiteService[] = [
       "Fast mobile-first loading",
       "Campaign analytics readiness",
     ],
+    featureCards: [
+      {
+        title: "High-Impact Offer Hero",
+        description: "Sharp above-the-fold headline, subheadline and immediate primary action button tailored to your campaign.",
+        icon: "target",
+      },
+      {
+        title: "Focused Value Highlights",
+        description: "Scannable benefit blocks that answer buyer questions quickly and remove hesitation.",
+        icon: "zap",
+      },
+      {
+        title: "Lead Capture Forms",
+        description: "Short, friction-free enquiry and registration fields built to maximize mobile conversions.",
+        icon: "mail",
+      },
+      {
+        title: "Instant WhatsApp Conversion CTA",
+        description: "Pre-filled campaign WhatsApp buttons so warm prospects start chatting with your sales team immediately.",
+        icon: "message-circle",
+      },
+      {
+        title: "Fast Ad-Click Performance",
+        description: "Lightweight architecture engineered to load rapidly when users tap links from Instagram, Facebook or Google Ads.",
+        icon: "smartphone",
+      },
+      {
+        title: "Campaign Tracking Readiness",
+        description: "Clean structure ready for Meta Pixel, Google Analytics and conversion tracking tags.",
+        icon: "bar-chart",
+      },
+    ],
     idealFor: [
       "Product launches",
       "Digital marketers",
@@ -381,6 +793,20 @@ export const SERVICES: WebsiteService[] = [
       "Maximize return on social media ads and promotional campaigns.",
       "Launch new offers, services or pre-registrations quickly and professionally.",
       "Capture warm leads directly through WhatsApp or structured enquiry forms.",
+    ],
+    mobileHighlight:
+      "Over 80% of social media ad clicks happen on mobile devices. Every headline, visual block and CTA button is engineered for immediate thumb-reach conversion on 320px–430px screens.",
+    integrations: [
+      "Pre-filled WhatsApp campaign enquiry buttons",
+      "Lead capture forms & email alerts",
+      "Analytics & ad conversion tracking readiness",
+      "Social share preview metadata (Open Graph)",
+    ],
+    securityUsability: [
+      "Distraction-free single-goal layout hierarchy",
+      "Validated lead capture inputs for clean data",
+      "Ultra-fast asset optimization to cut ad bounce rates",
+      "HTTPS secure delivery across all ad platforms",
     ],
     icon: "layout",
     image: "/images/service-landing.jpg",
@@ -409,6 +835,38 @@ export const SERVICES: WebsiteService[] = [
       "Sponsor and partner showcase",
       "WhatsApp attendee support",
     ],
+    featureCards: [
+      {
+        title: "Event Overview & Key Dates",
+        description: "Prominent date, time, venue and registration banner so attendees see essential details right away.",
+        icon: "calendar",
+      },
+      {
+        title: "Speaker & Guest Lineup",
+        description: "Clean profile cards showcasing keynote speakers, panelists, hosts and session topics.",
+        icon: "mic",
+      },
+      {
+        title: "Session Schedule & Agenda",
+        description: "Clear chronological timetable breaking down talks, workshops, breaks and networking sessions.",
+        icon: "clock",
+      },
+      {
+        title: "Ticket Tiers & Registration",
+        description: "Structured Standard, VIP or Group pass breakdowns paired with straightforward registration CTAs.",
+        icon: "ticket",
+      },
+      {
+        title: "Venue & Travel Directions",
+        description: "Hall details, street address and map links guiding local and travelling attendees smoothly.",
+        icon: "map-pin",
+      },
+      {
+        title: "Sponsors & Attendee Desk",
+        description: "Dedicated partner recognition alongside WhatsApp support for ticket or sponsorship enquiries.",
+        icon: "users",
+      },
+    ],
     idealFor: [
       "Conference organizers",
       "Corporate summits",
@@ -421,6 +879,20 @@ export const SERVICES: WebsiteService[] = [
       "Simplify attendee registration and ticket enquiries online.",
       "Present sponsors, partners and event highlights in a polished visual layout.",
       "Build excitement and credibility before, during and after your event.",
+    ],
+    mobileHighlight:
+      "Attendees check schedules, speaker rooms and venue maps on their phones both before and on event day. Clean vertical timelines and quick registration buttons work effortlessly on mobile.",
+    integrations: [
+      "Attendee registration & ticket enquiry flows",
+      "WhatsApp attendee & sponsorship support desk",
+      "Venue Google Maps location link",
+      "Shareable event link previews for social promotion",
+    ],
+    securityUsability: [
+      "Clear ticket and schedule readability on every screen",
+      "Validated attendee registration fields",
+      "Fast page loads for guests on venue cellular data",
+      "HTTPS-secured event registration pages",
     ],
     icon: "calendar-days",
     image: "/images/service-event.jpg",
@@ -449,6 +921,38 @@ export const SERVICES: WebsiteService[] = [
       "Operating hours and location info",
       "Mobile-friendly scheduling flow",
     ],
+    featureCards: [
+      {
+        title: "Service Menu & Durations",
+        description: "List consultations, treatments or sessions clearly with expected duration and fee transparency.",
+        icon: "briefcase",
+      },
+      {
+        title: "Date & Time Slot Selection",
+        description: "Organized scheduling flow letting clients pick available days and preferred appointment windows.",
+        icon: "calendar",
+      },
+      {
+        title: "Specialist & Staff Profiles",
+        description: "Introduce doctors, consultants, stylists or advisers so clients book with full confidence.",
+        icon: "user-check",
+      },
+      {
+        title: "Structured Booking Form",
+        description: "Collect client name, phone, service choice and notes upfront before the appointment starts.",
+        icon: "check-circle",
+      },
+      {
+        title: "Instant WhatsApp Confirmation",
+        description: "Send booking details directly to your scheduling desk via WhatsApp for quick confirmation.",
+        icon: "message-circle",
+      },
+      {
+        title: "Hours & Office Directions",
+        description: "Upfront business hours, contact info and location links to reduce late arrivals or confusion.",
+        icon: "clock",
+      },
+    ],
     idealFor: [
       "Clinics and healthcare practices",
       "Salons and spas",
@@ -461,6 +965,20 @@ export const SERVICES: WebsiteService[] = [
       "Reduce missed calls, scheduling mix-ups and manual calendar administration.",
       "Collect essential client details upfront before each consultation.",
       "Deliver a modern, organized customer experience from the very first interaction.",
+    ],
+    mobileHighlight:
+      "Clients typically book clinic visits, salon sessions or consultations straight from their smartphones. Large tap-friendly time slots and clean booking steps keep scheduling fast and frustration-free.",
+    integrations: [
+      "WhatsApp appointment confirmation & rescheduling link",
+      "Calendar & email booking notifications",
+      "Google Maps office or clinic location link",
+      "Service selection & intake enquiry forms",
+    ],
+    securityUsability: [
+      "Validated phone, email and time-slot inputs",
+      "Clear step-by-step booking confirmation flow",
+      "HTTPS secure client intake handling",
+      "Accessible contrast and touch-friendly buttons on phones",
     ],
     icon: "calendar-check",
     image: "/images/service-appointment.jpg",
@@ -489,6 +1007,38 @@ export const SERVICES: WebsiteService[] = [
       "Searchable inventory tables",
       "Role-based staff access",
     ],
+    featureCards: [
+      {
+        title: "Product & SKU Directory",
+        description: "Maintain organized item codes, categories, unit prices, warehouse locations and current quantities.",
+        icon: "package",
+      },
+      {
+        title: "Real-Time Stock Tracking",
+        description: "See accurate stock balances across stores or warehouses immediately as items arrive or leave.",
+        icon: "bar-chart",
+      },
+      {
+        title: "Low-Stock Alert Indicators",
+        description: "Visual threshold badges highlight items running low so you reorder before stockouts occur.",
+        icon: "alert-triangle",
+      },
+      {
+        title: "Stock-In & Stock-Out Logs",
+        description: "Traceable movement history recording supplier deliveries, branch transfers and daily dispatches.",
+        icon: "truck",
+      },
+      {
+        title: "Instant Search & Filtering",
+        description: "Find any SKU, category or supplier record in seconds without flipping through manual ledgers.",
+        icon: "search",
+      },
+      {
+        title: "Role-Based Staff Access",
+        description: "Separate admin and storekeeper permissions to protect inventory integrity and accountability.",
+        icon: "lock",
+      },
+    ],
     idealFor: [
       "Wholesalers and distributors",
       "Retail stores and pharmacies",
@@ -501,6 +1051,20 @@ export const SERVICES: WebsiteService[] = [
       "Spot low-stock products early to prevent costly stockouts and lost sales.",
       "Maintain clear visibility over product quantities, categories and movement history.",
       "Access your business inventory securely from office desktops or mobile tablets.",
+    ],
+    mobileHighlight:
+      "Storekeepers and managers can check quantities, log stock receipts and review low-stock items directly from tablets or smartphones right inside the warehouse aisle.",
+    integrations: [
+      "CSV / spreadsheet inventory export readiness",
+      "Multi-branch or warehouse stock views",
+      "Supplier directory & reorder alerts",
+      "WhatsApp management summary sharing",
+    ],
+    securityUsability: [
+      "Role-based authentication architecture for staff accountability",
+      "Clear status badges and clean data tables",
+      "Input validation to prevent negative or erroneous stock entries",
+      "HTTPS-encrypted browser access from desktop or tablet",
     ],
     icon: "boxes",
     image: "/images/service-inventory.jpg",
@@ -529,6 +1093,38 @@ export const SERVICES: WebsiteService[] = [
       "Revenue summary dashboard",
       "Receipt and payment record logs",
     ],
+    featureCards: [
+      {
+        title: "Branded Invoice Builder",
+        description: "Generate crisp invoices displaying your company logo, invoice numbers, issue dates and bank details.",
+        icon: "receipt",
+      },
+      {
+        title: "Automatic Line-Item Totals",
+        description: "Calculate quantities, unit rates, subtotals, discounts and taxes automatically with zero math errors.",
+        icon: "calculator",
+      },
+      {
+        title: "Client Billing Directory",
+        description: "Store repeat client contacts, company names and complete invoice history in one place.",
+        icon: "users",
+      },
+      {
+        title: "Payment Status Tracking",
+        description: "Monitor Paid, Pending and Overdue invoices at a glance to keep business cash flow healthy.",
+        icon: "bar-chart",
+      },
+      {
+        title: "Printable & PDF Invoice Output",
+        description: "Clean print and PDF-ready invoice layouts ready to email or send to clients on WhatsApp.",
+        icon: "file-text",
+      },
+      {
+        title: "Receipt & Record Archive",
+        description: "Search past invoices and payment receipts quickly whenever clients or accountants need copies.",
+        icon: "shield-check",
+      },
+    ],
     idealFor: [
       "Agencies and freelancers",
       "SMEs and service companies",
@@ -540,6 +1136,20 @@ export const SERVICES: WebsiteService[] = [
       "Keep accurate visibility over received payments and outstanding client balances.",
       "Eliminate manual calculation mistakes with automated line-item subtotals.",
       "Retrieve past invoices and client billing history in seconds.",
+    ],
+    mobileHighlight:
+      "Business owners can create an invoice, check whether a client has paid, or share a printable invoice link directly from their smartphone while meeting clients on the go.",
+    integrations: [
+      "Printable & downloadable PDF invoice layouts",
+      "WhatsApp & email invoice sharing links",
+      "Client billing history & receipt logs",
+      "Payment gateway link support for faster settlement",
+    ],
+    securityUsability: [
+      "Protected financial dashboard access structure",
+      "Validated numeric totals and invoice numbering",
+      "Clean, readable billing tables across desktop and mobile",
+      "HTTPS-encrypted transmission for business records",
     ],
     icon: "file-spreadsheet",
     image: "/images/service-invoice.jpg",
@@ -568,6 +1178,38 @@ export const SERVICES: WebsiteService[] = [
       "Newsletter signup and social sharing",
       "Easy content management workflow",
     ],
+    featureCards: [
+      {
+        title: "Featured Story Frontpage",
+        description: "Magazine-grade lead story placement paired with crisp headline cards for breaking and trending posts.",
+        icon: "newspaper",
+      },
+      {
+        title: "Category & Topic Sections",
+        description: "Organize coverage cleanly across Business, Technology, Lifestyle, Guides or custom editorial desks.",
+        icon: "tag",
+      },
+      {
+        title: "Clean Editorial Reading View",
+        description: "Comfortable line lengths, clear headings and sharp photography built for distraction-free reading.",
+        icon: "pen-tool",
+      },
+      {
+        title: "Search & Story Archives",
+        description: "Let readers discover past articles quickly by keyword, category, author or publication date.",
+        icon: "search",
+      },
+      {
+        title: "Social Sharing & Link Previews",
+        description: "Structured Open Graph metadata so every shared article displays a clean headline and thumbnail.",
+        icon: "share-2",
+      },
+      {
+        title: "Author Profiles & Publishing Flow",
+        description: "Display writer bylines, reading times and publish dates alongside an organized content workflow.",
+        icon: "user-check",
+      },
+    ],
     idealFor: [
       "News publications and media brands",
       "Bloggers and journalists",
@@ -580,6 +1222,20 @@ export const SERVICES: WebsiteService[] = [
       "Grow organic search traffic with SEO-structured article pages and category archives.",
       "Organize content clearly across news desks, guides and featured editorials.",
       "Deliver rapid loading on mobile networks for readers on the go.",
+    ],
+    mobileHighlight:
+      "Readers consume news and articles primarily on mobile phones. Clean typography, responsive thumbnails and quick category navigation make reading effortless on any screen size.",
+    integrations: [
+      "SEO sitemaps & Open Graph social share cards",
+      "Article search & category archive filtering",
+      "Newsletter signup & WhatsApp community sharing",
+      "Content management & editorial publishing support",
+    ],
+    securityUsability: [
+      "Fast static or cached page delivery for high readership",
+      "Accessible article typography and contrast ratios",
+      "Clean semantic HTML structure for search engines",
+      "HTTPS security and lightweight mobile image delivery",
     ],
     icon: "newspaper",
     image: "/images/service-blog.jpg",
@@ -599,4 +1255,3 @@ export const ADDITIONAL_SERVICES = SERVICES.filter((s) => !s.featured);
 export function getServiceBySlug(slug: string): WebsiteService | undefined {
   return SERVICES.find((s) => s.slug === slug);
 }
-

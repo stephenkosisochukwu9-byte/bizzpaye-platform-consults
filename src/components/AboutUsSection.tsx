@@ -29,7 +29,7 @@ export function AboutUsSection() {
   return (
     <section
       id="about"
-      className="py-16 sm:py-20 bg-[#FAFBF8] border-t border-[#DCE8F3]"
+      className="py-11 sm:py-16 lg:py-20 bg-[#FAFBF8] border-t border-[#DCE8F3]"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">

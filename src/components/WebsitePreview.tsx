@@ -404,6 +404,7 @@ export function WebsitePreview({ service, size }: WebsitePreviewProps) {
 
 /* ============================================================================
    COMPACT CARD DEVICE MOCKUP (Laptop or Desktop Monitor inside ServiceCard)
+   Optimized for crisp 2-column mobile presentation AND rich desktop detail
    ============================================================================ */
 function CardDevicePreview({
   service,
@@ -418,183 +419,203 @@ function CardDevicePreview({
     <div className="w-full flex flex-col items-center">
       {/* Device Screen Bezel */}
       <div
-        className={`w-full bg-[#102A56] p-[5px] sm:p-[6px] shadow-[0_10px_22px_rgba(16,42,86,0.18)] ${
-          isDesktop ? "rounded-[10px]" : "rounded-t-[10px] rounded-b-[4px]"
+        className={`w-full bg-[#102A56] p-[3.5px] sm:p-[6px] shadow-[0_8px_18px_rgba(16,42,86,0.16)] ${
+          isDesktop
+            ? "rounded-[8px] sm:rounded-[10px]"
+            : "rounded-t-[8px] sm:rounded-t-[10px] rounded-b-[3px] sm:rounded-b-[4px]"
         }`}
       >
         {/* Top webcam dot */}
-        <div className="flex items-center justify-center pb-[3px]">
+        <div className="flex items-center justify-center pb-[2px] sm:pb-[3px]">
           <span className="w-1 h-1 rounded-full bg-white/30" />
         </div>
 
-        {/* Inner Browser Viewport */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[5px] bg-white border border-[#DCE8F3]/60 flex flex-col text-left select-none">
+        {/* Inner Browser Viewport (Strict 16/10 Aspect Ratio — Zero Distortion) */}
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[4px] sm:rounded-[5px] bg-white border border-[#DCE8F3]/60 flex flex-col text-left select-none">
           {/* Mini Website Header */}
-          <div className="flex items-center justify-between px-2 py-1 bg-white border-b border-[#DCE8F3] shrink-0">
-            <span className="text-[7px] font-extrabold text-[#102A56] truncate max-w-[45%]">
+          <div className="flex items-center justify-between px-1.5 sm:px-2 py-0.5 sm:py-1 bg-white border-b border-[#DCE8F3] shrink-0">
+            <span className="text-[6px] sm:text-[7px] font-extrabold text-[#102A56] truncate max-w-[68%] sm:max-w-[45%]">
               {cfg.brand}
             </span>
             <div className="flex items-center gap-1.5">
               {cfg.navItems.slice(0, 3).map((item) => (
                 <span
                   key={item}
-                  className="text-[5.5px] font-semibold text-[#536477] hidden min-[360px]:inline"
+                  className="text-[5.5px] font-semibold text-[#536477] hidden sm:inline"
                 >
                   {item}
                 </span>
               ))}
-              <span className="px-1.5 py-[1.5px] rounded-full bg-[#0866D9] text-white text-[5px] font-bold">
+              <span className="px-1 sm:px-1.5 py-[1px] sm:py-[1.5px] rounded-full bg-[#0866D9] text-white text-[4.5px] sm:text-[5px] font-bold">
                 Start
               </span>
             </div>
           </div>
 
-          {/* Mini Website Body depending on layoutVariant */}
-          {cfg.layoutVariant === "hero-overlay" ? (
-            <div className="relative flex-1 flex flex-col justify-between overflow-hidden">
-              <Image
-                src={service.image}
-                alt={service.imageAlt}
-                fill
-                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 24vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#102A56]/88 via-[#102A56]/55 to-transparent" />
-              <div className="relative z-10 p-2.5 flex flex-col justify-center h-full max-w-[68%]">
-                <span className="inline-block w-fit px-1.5 py-0.5 rounded bg-[#0866D9] text-white text-[5px] font-bold uppercase tracking-wider mb-1">
-                  {cfg.heroBadge}
-                </span>
-                <p className="text-[10px] sm:text-[10.5px] font-extrabold text-white leading-[1.15]">
-                  {cfg.heroTitle}
-                </p>
-                <span className="mt-1.5 inline-block w-fit rounded-full bg-white text-[#102A56] text-[5.5px] font-extrabold px-2 py-0.5">
-                  {cfg.heroCta}
-                </span>
-              </div>
-              {/* Bottom mini strip */}
-              <div className="relative z-10 bg-white/95 backdrop-blur-xs px-2 py-1 grid grid-cols-3 gap-1 border-t border-[#DCE8F3]">
-                {cfg.cards.map((c) => (
-                  <div key={c.title} className="truncate">
-                    <p className="text-[5.5px] font-bold text-[#102A56] truncate">
-                      {c.title}
-                    </p>
-                    <p className="text-[5px] text-[#0866D9] font-semibold truncate">
-                      {c.tag ?? c.meta}
-                    </p>
-                  </div>
-                ))}
-              </div>
+          {/* Mobile (< sm): Crisp Photographic Preview maximizing clarity inside 2-column cards */}
+          <div className="sm:hidden relative flex-1 overflow-hidden">
+            <Image
+              src={service.image}
+              alt={service.imageAlt}
+              fill
+              sizes="46vw"
+              className={`object-cover ${
+                service.slug === "personal-portfolio-websites"
+                  ? "object-[50%_20%]"
+                  : "object-center"
+              }`}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#102A56]/85 via-[#102A56]/25 to-transparent" />
+            <div className="absolute bottom-1.5 left-1.5 right-1.5">
+              <p className="text-[7px] min-[375px]:text-[8px] font-extrabold text-white leading-[1.15] line-clamp-2 drop-shadow-xs">
+                {cfg.heroTitle}
+              </p>
             </div>
-          ) : cfg.layoutVariant === "dashboard" ? (
-            <div className="flex-1 bg-[#FAFBF8] p-2 flex flex-col gap-1.5 overflow-hidden">
-              {/* Mini top metrics strip */}
-              <div className="grid grid-cols-3 gap-1.5">
-                {cfg.cards.map((c, i) => (
-                  <div
-                    key={c.title}
-                    className={`rounded p-1.5 border ${
-                      i === 0
-                        ? "bg-[#102A56] text-white border-[#102A56]"
-                        : "bg-white text-[#102A56] border-[#DCE8F3]"
-                    }`}
-                  >
-                    <p className="text-[5px] font-semibold opacity-80 truncate">
-                      {c.tag}
-                    </p>
-                    <p className="text-[6.5px] font-extrabold truncate mt-0.5">
-                      {c.meta.split("·")[0]}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              {/* Bottom split: photo + table */}
-              <div className="flex-1 grid grid-cols-12 gap-1.5 min-h-0">
-                <div className="col-span-5 relative rounded overflow-hidden border border-[#DCE8F3]">
-                  <Image
-                    src={service.image}
-                    alt={service.imageAlt}
-                    fill
-                    sizes="(max-width: 640px) 45vw, 15vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="col-span-7 bg-white rounded border border-[#DCE8F3] p-1.5 flex flex-col justify-between">
-                  <p className="text-[6px] font-extrabold text-[#102A56] truncate">
-                    {cfg.heroTitle}
-                  </p>
-                  <div className="space-y-1">
-                    {cfg.cards.map((row) => (
-                      <div
-                        key={row.title}
-                        className="flex items-center justify-between gap-1 bg-[#E4F3FF]/60 rounded px-1 py-0.5"
-                      >
-                        <span className="text-[5px] font-bold text-[#102A56] truncate">
-                          {row.title.split("·")[0]}
-                        </span>
-                        <span className="text-[4.5px] font-bold text-[#0866D9] shrink-0">
-                          {row.tag}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            /* split-light & editorial */
-            <div className="flex-1 bg-[#FAFBF8] flex flex-col overflow-hidden">
-              <div className="flex-1 grid grid-cols-12 gap-1.5 p-2 items-center min-h-0">
-                <div className="col-span-6 flex flex-col justify-center gap-1 pr-0.5">
-                  <span className="text-[5px] font-bold uppercase tracking-wider text-[#0866D9] truncate">
+          </div>
+
+          {/* Tablet & Desktop (sm+): Full Detailed Mini Website Interface */}
+          <div className="hidden sm:flex sm:flex-col flex-1 min-h-0 overflow-hidden">
+            {cfg.layoutVariant === "hero-overlay" ? (
+              <div className="relative flex-1 flex flex-col justify-between overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.imageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 45vw, 24vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#102A56]/88 via-[#102A56]/55 to-transparent" />
+                <div className="relative z-10 p-2.5 flex flex-col justify-center h-full max-w-[68%]">
+                  <span className="inline-block w-fit px-1.5 py-0.5 rounded bg-[#0866D9] text-white text-[5px] font-bold uppercase tracking-wider mb-1">
                     {cfg.heroBadge}
                   </span>
-                  <p className="text-[9px] sm:text-[9.5px] font-extrabold text-[#102A56] leading-[1.15]">
+                  <p className="text-[10.5px] font-extrabold text-white leading-[1.15]">
                     {cfg.heroTitle}
                   </p>
-                  <span className="mt-0.5 inline-block w-fit rounded-full bg-[#102A56] text-white text-[5.5px] font-bold px-2 py-0.5">
+                  <span className="mt-1.5 inline-block w-fit rounded-full bg-white text-[#102A56] text-[5.5px] font-extrabold px-2 py-0.5">
                     {cfg.heroCta}
                   </span>
                 </div>
-                <div className="col-span-6 relative h-full min-h-[62px] rounded-[5px] overflow-hidden border border-[#DCE8F3]">
-                  <Image
-                    src={service.image}
-                    alt={service.imageAlt}
-                    fill
-                    sizes="(max-width: 640px) 45vw, 15vw"
-                    className="object-cover"
-                  />
+                <div className="relative z-10 bg-white/95 backdrop-blur-xs px-2 py-1 grid grid-cols-3 gap-1 border-t border-[#DCE8F3]">
+                  {cfg.cards.map((c) => (
+                    <div key={c.title} className="truncate">
+                      <p className="text-[5.5px] font-bold text-[#102A56] truncate">
+                        {c.title}
+                      </p>
+                      <p className="text-[5px] text-[#0866D9] font-semibold truncate">
+                        {c.tag ?? c.meta}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
-              {/* Bottom 3 mini cards */}
-              <div className="bg-white border-t border-[#DCE8F3] px-2 py-1 grid grid-cols-3 gap-1 shrink-0">
-                {cfg.cards.map((c) => (
-                  <div
-                    key={c.title}
-                    className="rounded bg-[#E4F3FF]/55 px-1 py-0.5 truncate"
-                  >
-                    <p className="text-[5px] font-bold text-[#102A56] truncate">
-                      {c.title}
-                    </p>
-                    <p className="text-[4.5px] font-semibold text-[#0866D9] truncate">
-                      {c.meta}
-                    </p>
+            ) : cfg.layoutVariant === "dashboard" ? (
+              <div className="flex-1 bg-[#FAFBF8] p-2 flex flex-col gap-1.5 overflow-hidden">
+                <div className="grid grid-cols-3 gap-1.5">
+                  {cfg.cards.map((c, i) => (
+                    <div
+                      key={c.title}
+                      className={`rounded p-1.5 border ${
+                        i === 0
+                          ? "bg-[#102A56] text-white border-[#102A56]"
+                          : "bg-white text-[#102A56] border-[#DCE8F3]"
+                      }`}
+                    >
+                      <p className="text-[5px] font-semibold opacity-80 truncate">
+                        {c.tag}
+                      </p>
+                      <p className="text-[6.5px] font-extrabold truncate mt-0.5">
+                        {c.meta.split("·")[0]}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1 grid grid-cols-12 gap-1.5 min-h-0">
+                  <div className="col-span-5 relative rounded overflow-hidden border border-[#DCE8F3]">
+                    <Image
+                      src={service.image}
+                      alt={service.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 22vw, 15vw"
+                      className="object-cover"
+                    />
                   </div>
-                ))}
+                  <div className="col-span-7 bg-white rounded border border-[#DCE8F3] p-1.5 flex flex-col justify-between">
+                    <p className="text-[6px] font-extrabold text-[#102A56] truncate">
+                      {cfg.heroTitle}
+                    </p>
+                    <div className="space-y-1">
+                      {cfg.cards.map((row) => (
+                        <div
+                          key={row.title}
+                          className="flex items-center justify-between gap-1 bg-[#E4F3FF]/60 rounded px-1 py-0.5"
+                        >
+                          <span className="text-[5px] font-bold text-[#102A56] truncate">
+                            {row.title.split("·")[0]}
+                          </span>
+                          <span className="text-[4.5px] font-bold text-[#0866D9] shrink-0">
+                            {row.tag}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          )}
+            ) : (
+              <div className="flex-1 bg-[#FAFBF8] flex flex-col overflow-hidden">
+                <div className="flex-1 grid grid-cols-12 gap-1.5 p-2 items-center min-h-0">
+                  <div className="col-span-6 flex flex-col justify-center gap-1 pr-0.5">
+                    <span className="text-[5px] font-bold uppercase tracking-wider text-[#0866D9] truncate">
+                      {cfg.heroBadge}
+                    </span>
+                    <p className="text-[9.5px] font-extrabold text-[#102A56] leading-[1.15]">
+                      {cfg.heroTitle}
+                    </p>
+                    <span className="mt-0.5 inline-block w-fit rounded-full bg-[#102A56] text-white text-[5.5px] font-bold px-2 py-0.5">
+                      {cfg.heroCta}
+                    </span>
+                  </div>
+                  <div className="col-span-6 relative h-full min-h-[62px] rounded-[5px] overflow-hidden border border-[#DCE8F3]">
+                    <Image
+                      src={service.image}
+                      alt={service.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 22vw, 15vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="bg-white border-t border-[#DCE8F3] px-2 py-1 grid grid-cols-3 gap-1 shrink-0">
+                  {cfg.cards.map((c) => (
+                    <div
+                      key={c.title}
+                      className="rounded bg-[#E4F3FF]/55 px-1 py-0.5 truncate"
+                    >
+                      <p className="text-[5px] font-bold text-[#102A56] truncate">
+                        {c.title}
+                      </p>
+                      <p className="text-[4.5px] font-semibold text-[#0866D9] truncate">
+                        {c.meta}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Realistic Laptop Base OR Desktop Monitor Stand */}
       {isDesktop ? (
         <div className="flex flex-col items-center">
-          <div className="w-8 h-3 bg-gradient-to-b from-[#536477] to-[#DCE8F3]" />
-          <div className="w-20 h-1.5 rounded-full bg-[#102A56]/25" />
+          <div className="w-6 sm:w-8 h-2 sm:h-3 bg-gradient-to-b from-[#536477] to-[#DCE8F3]" />
+          <div className="w-14 sm:w-20 h-1 sm:h-1.5 rounded-full bg-[#102A56]/25" />
         </div>
       ) : (
-        <div className="w-[106%] h-[7px] rounded-b-[8px] bg-gradient-to-b from-[#DCE8F3] to-[#536477]/60 shadow-xs flex items-center justify-center">
-          <span className="w-8 h-[2px] rounded-full bg-[#102A56]/30" />
+        <div className="w-[105%] h-[5px] sm:h-[7px] rounded-b-[6px] sm:rounded-b-[8px] bg-gradient-to-b from-[#DCE8F3] to-[#536477]/60 shadow-xs flex items-center justify-center">
+          <span className="w-6 sm:w-8 h-[1.5px] sm:h-[2px] rounded-full bg-[#102A56]/30" />
         </div>
       )}
     </div>
@@ -602,7 +623,7 @@ function CardDevicePreview({
 }
 
 /* ============================================================================
-   FULL-SCALE DETAIL PAGE SHOWCASE (Desktop Browser + Responsive Mobile Phone)
+   FULL-SCALE DETAIL PAGE SHOWCASE (Laptop/Browser Frame + Mobile Preview)
    ============================================================================ */
 function DetailShowcasePreview({
   service,
@@ -614,212 +635,219 @@ function DetailShowcasePreview({
   return (
     <div className="relative">
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-end">
-        {/* Large Desktop Browser Showcase */}
-        <div className="xl:col-span-9 rounded-[20px] bg-white border border-[#DCE8F3] shadow-[0_18px_45px_rgba(16,42,86,0.12)] overflow-hidden">
-          {/* Browser Top Chrome */}
-          <div className="bg-[#102A56] px-4 py-2.5 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-white/35" />
-              <span className="w-2.5 h-2.5 rounded-full bg-white/35" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#0866D9]" />
-            </div>
-            <div className="flex-1 max-w-md mx-auto rounded-full bg-white/12 px-3.5 py-1 text-[11px] font-medium text-[#E4F3FF] text-center truncate">
-              https://{cfg.domain}
-            </div>
-            <span className="hidden sm:inline-block text-[10px] font-bold uppercase tracking-wider text-[#E4F3FF]/80">
-              Illustrative Preview
-            </span>
-          </div>
-
-          {/* Demo Website Navigation Bar */}
-          <div className="bg-white border-b border-[#DCE8F3] px-5 py-3 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-md bg-[#0866D9] text-white text-xs font-extrabold flex items-center justify-center">
-                {cfg.brand.charAt(0)}
-              </span>
-              <span className="text-sm font-extrabold text-[#102A56]">
-                {cfg.brand}
+        {/* Large Laptop / Browser Showcase */}
+        <div className="xl:col-span-9 flex flex-col items-center">
+          <div className="w-full rounded-[16px] sm:rounded-[20px] bg-white border border-[#DCE8F3] shadow-[0_14px_38px_rgba(16,42,86,0.12)] overflow-hidden">
+            {/* Browser Top Chrome */}
+            <div className="bg-[#102A56] px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-between gap-2.5">
+              <div className="flex items-center gap-1.5 shrink-0">
+                <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white/35" />
+                <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white/35" />
+                <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#0866D9]" />
+              </div>
+              <div className="flex-1 max-w-md mx-auto rounded-full bg-white/12 px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-medium text-[#E4F3FF] text-center truncate">
+                https://{cfg.domain}
+              </div>
+              <span className="hidden sm:inline-block text-[10px] font-bold uppercase tracking-wider text-[#E4F3FF]/80 shrink-0">
+                Live Preview Layout
               </span>
             </div>
 
-            <div className="hidden sm:flex items-center gap-4 text-xs font-semibold text-[#536477]">
-              {cfg.navItems.map((nav, i) => (
-                <span
-                  key={nav}
-                  className={i === 0 ? "text-[#0866D9] font-bold" : ""}
-                >
-                  {nav}
+            {/* Demo Website Navigation Bar */}
+            <div className="bg-white border-b border-[#DCE8F3] px-3.5 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="w-6 h-6 rounded-md bg-[#0866D9] text-white text-xs font-extrabold flex items-center justify-center shrink-0">
+                  {cfg.brand.charAt(0)}
                 </span>
-              ))}
-            </div>
-
-            <span className="rounded-full bg-[#102A56] text-white text-[11px] font-bold px-3.5 py-1.5">
-              {cfg.heroCta}
-            </span>
-          </div>
-
-          {/* Demo Website Hero Area */}
-          <div className="relative bg-[#FAFBF8]">
-            {cfg.layoutVariant === "hero-overlay" ? (
-              <div className="relative min-h-[250px] sm:min-h-[290px] flex items-center overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.imageAlt}
-                  fill
-                  priority
-                  sizes="(max-width: 1280px) 100vw, 68vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#102A56]/92 via-[#102A56]/70 to-[#102A56]/25" />
-                <div className="relative z-10 p-6 sm:p-8 max-w-lg space-y-3">
-                  <span className="inline-flex items-center rounded-full bg-[#0866D9] text-white text-[11px] font-bold px-3 py-1">
-                    {cfg.heroBadge}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-                    {cfg.heroTitle}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#E4F3FF] leading-relaxed">
-                    {cfg.heroSubtitle}
-                  </p>
-                  <div className="flex flex-wrap gap-2.5 pt-1">
-                    <span className="rounded-full bg-white text-[#102A56] text-xs font-extrabold px-4 py-2">
-                      {cfg.heroCta}
-                    </span>
-                    {cfg.heroSecondaryCta && (
-                      <span className="rounded-full bg-white/15 border border-white/40 text-white text-xs font-bold px-4 py-2">
-                        {cfg.heroSecondaryCta}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 p-6 sm:p-7 items-center bg-gradient-to-br from-[#FAFBF8] to-[#E4F3FF]/50">
-                <div className="md:col-span-6 space-y-3">
-                  <span className="inline-flex items-center rounded-full bg-[#E4F3FF] border border-[#DCE8F3] text-[#0866D9] text-[11px] font-extrabold px-3 py-1">
-                    {cfg.heroBadge}
-                  </span>
-                  <h3 className="text-2xl sm:text-[26px] font-extrabold text-[#102A56] leading-tight">
-                    {cfg.heroTitle}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#536477] leading-relaxed">
-                    {cfg.heroSubtitle}
-                  </p>
-                  <div className="flex flex-wrap gap-2.5 pt-1">
-                    <span className="rounded-full bg-[#102A56] text-white text-xs font-bold px-4 py-2">
-                      {cfg.heroCta}
-                    </span>
-                    {cfg.heroSecondaryCta && (
-                      <span className="rounded-full bg-white border border-[#0866D9]/40 text-[#102A56] text-xs font-bold px-4 py-2">
-                        {cfg.heroSecondaryCta}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div className="md:col-span-6">
-                  <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border-2 border-white shadow-md">
-                    <Image
-                      src={service.image}
-                      alt={service.imageAlt}
-                      fill
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Highlight / Admissions / Filter Banner */}
-            {cfg.bannerText && (
-              <div className="bg-[#E4F3FF] border-y border-[#DCE8F3] px-5 py-2.5 flex items-center justify-between gap-3">
-                <p className="text-xs font-bold text-[#102A56]">
-                  {cfg.bannerText}
-                </p>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-extrabold text-[#0866D9] shrink-0">
-                  <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>Active Module</span>
+                <span className="text-xs sm:text-sm font-extrabold text-[#102A56] truncate">
+                  {cfg.brand}
                 </span>
               </div>
-            )}
 
-            {/* Demo Featured Content Cards Grid */}
-            <div className="p-5 sm:p-6 bg-white space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-                {cfg.cards.map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl bg-[#FAFBF8] border border-[#DCE8F3] p-3.5 space-y-1.5"
+              <div className="hidden md:flex items-center gap-4 text-xs font-semibold text-[#536477]">
+                {cfg.navItems.map((nav, i) => (
+                  <span
+                    key={nav}
+                    className={i === 0 ? "text-[#0866D9] font-bold" : ""}
                   >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="inline-flex items-center rounded-full bg-[#E4F3FF] text-[#0866D9] text-[10px] font-extrabold px-2 py-0.5">
-                        {item.tag ?? "Featured"}
-                      </span>
-                      <DetailMiniIcon slug={service.slug} />
-                    </div>
-                    <p className="text-xs sm:text-[13px] font-extrabold text-[#102A56]">
-                      {item.title}
-                    </p>
-                    <p className="text-[11.5px] font-medium text-[#536477]">
-                      {item.meta}
-                    </p>
-                  </div>
+                    {nav}
+                  </span>
                 ))}
               </div>
 
-              {/* Secondary Section (News/Gallery/Schedule/Logs/Checkout) */}
-              <div className="rounded-xl bg-[#FAFBF8] border border-[#DCE8F3] p-4">
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <h4 className="text-xs sm:text-sm font-extrabold text-[#102A56]">
-                    {cfg.secondaryBlockTitle}
-                  </h4>
-                  <span className="text-[10.5px] font-bold text-[#0866D9]">
-                    {cfg.domain}
+              <span className="rounded-full bg-[#102A56] text-white text-[10px] sm:text-[11px] font-bold px-3 sm:px-3.5 py-1.5 shrink-0">
+                {cfg.heroCta}
+              </span>
+            </div>
+
+            {/* Demo Website Hero Area (Preserving Exact Original Service Image & Aspect Ratio) */}
+            <div className="relative bg-[#FAFBF8]">
+              {cfg.layoutVariant === "hero-overlay" ? (
+                <div className="relative aspect-[16/10] sm:aspect-auto sm:min-h-[290px] flex items-end sm:items-center overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.imageAlt}
+                    fill
+                    priority
+                    sizes="(max-width: 1280px) 100vw, 68vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#102A56]/92 via-[#102A56]/65 to-[#102A56]/20" />
+                  <div className="relative z-10 p-4 sm:p-8 max-w-lg space-y-2 sm:space-y-3">
+                    <span className="inline-flex items-center rounded-full bg-[#0866D9] text-white text-[10px] sm:text-[11px] font-bold px-2.5 sm:px-3 py-0.5 sm:py-1">
+                      {cfg.heroBadge}
+                    </span>
+                    <h3 className="text-lg sm:text-3xl font-extrabold text-white leading-tight">
+                      {cfg.heroTitle}
+                    </h3>
+                    <p className="hidden sm:block text-sm text-[#E4F3FF] leading-relaxed">
+                      {cfg.heroSubtitle}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-0.5 sm:pt-1">
+                      <span className="rounded-full bg-white text-[#102A56] text-[10.5px] sm:text-xs font-extrabold px-3.5 sm:px-4 py-1.5 sm:py-2">
+                        {cfg.heroCta}
+                      </span>
+                      {cfg.heroSecondaryCta && (
+                        <span className="rounded-full bg-white/15 border border-white/40 text-white text-[10.5px] sm:text-xs font-bold px-3.5 sm:px-4 py-1.5 sm:py-2">
+                          {cfg.heroSecondaryCta}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5 p-4 sm:p-7 items-center bg-gradient-to-br from-[#FAFBF8] to-[#E4F3FF]/50">
+                  {/* Show crisp full-aspect image first on mobile for immediate visual impact */}
+                  <div className="md:col-span-6 md:order-2">
+                    <div className="relative aspect-[16/10] w-full rounded-xl sm:rounded-2xl overflow-hidden border-2 border-white shadow-md">
+                      <Image
+                        src={service.image}
+                        alt={service.imageAlt}
+                        fill
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="md:col-span-6 md:order-1 space-y-2.5 sm:space-y-3">
+                    <span className="inline-flex items-center rounded-full bg-[#E4F3FF] border border-[#DCE8F3] text-[#0866D9] text-[10.5px] sm:text-[11px] font-extrabold px-3 py-1">
+                      {cfg.heroBadge}
+                    </span>
+                    <h3 className="text-xl sm:text-[26px] font-extrabold text-[#102A56] leading-tight">
+                      {cfg.heroTitle}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#536477] leading-relaxed">
+                      {cfg.heroSubtitle}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-0.5 sm:pt-1">
+                      <span className="rounded-full bg-[#102A56] text-white text-[11px] sm:text-xs font-bold px-3.5 sm:px-4 py-1.5 sm:py-2">
+                        {cfg.heroCta}
+                      </span>
+                      {cfg.heroSecondaryCta && (
+                        <span className="rounded-full bg-white border border-[#0866D9]/40 text-[#102A56] text-[11px] sm:text-xs font-bold px-3.5 sm:px-4 py-1.5 sm:py-2">
+                          {cfg.heroSecondaryCta}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Highlight / Admissions / Filter Banner */}
+              {cfg.bannerText && (
+                <div className="bg-[#E4F3FF] border-y border-[#DCE8F3] px-3.5 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between gap-3">
+                  <p className="text-[11px] sm:text-xs font-bold text-[#102A56] leading-snug">
+                    {cfg.bannerText}
+                  </p>
+                  <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-extrabold text-[#0866D9] shrink-0">
+                    <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Active Module</span>
                   </span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {cfg.secondaryItems.map((entry) => (
+              )}
+
+              {/* Demo Featured Content Cards Grid */}
+              <div className="p-3.5 sm:p-6 bg-white space-y-4 sm:space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
+                  {cfg.cards.map((item) => (
                     <div
-                      key={entry.label}
-                      className="rounded-lg bg-white border border-[#DCE8F3] p-3"
+                      key={item.title}
+                      className="rounded-xl bg-[#FAFBF8] border border-[#DCE8F3] p-3 sm:p-3.5 space-y-1"
                     >
-                      <div className="flex items-center justify-between gap-1">
-                        <p className="text-[11px] font-extrabold text-[#0866D9]">
-                          {entry.label}
-                        </p>
-                        {entry.status && (
-                          <span className="rounded bg-[#E4F3FF] px-1.5 py-0.5 text-[9.5px] font-bold text-[#102A56]">
-                            {entry.status}
-                          </span>
-                        )}
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="inline-flex items-center rounded-full bg-[#E4F3FF] text-[#0866D9] text-[10px] font-extrabold px-2 py-0.5">
+                          {item.tag ?? "Featured"}
+                        </span>
+                        <DetailMiniIcon slug={service.slug} />
                       </div>
-                      <p className="mt-1 text-[11.5px] text-[#26364A] leading-snug">
-                        {entry.value}
+                      <p className="text-xs sm:text-[13px] font-extrabold text-[#102A56]">
+                        {item.title}
+                      </p>
+                      <p className="text-[11px] sm:text-[11.5px] font-medium text-[#536477]">
+                        {item.meta}
                       </p>
                     </div>
                   ))}
                 </div>
-              </div>
 
-              {/* Demo Footer Contact Bar */}
-              <div className="rounded-xl bg-[#102A56] text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-[11px]">
-                <span className="font-bold">{cfg.brand}</span>
-                <span className="text-[#E4F3FF]">{cfg.footerContact}</span>
+                {/* Secondary Section (News/Gallery/Schedule/Logs/Checkout) */}
+                <div className="rounded-xl bg-[#FAFBF8] border border-[#DCE8F3] p-3.5 sm:p-4">
+                  <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
+                    <h4 className="text-xs sm:text-sm font-extrabold text-[#102A56]">
+                      {cfg.secondaryBlockTitle}
+                    </h4>
+                    <span className="hidden sm:inline text-[10.5px] font-bold text-[#0866D9]">
+                      {cfg.domain}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
+                    {cfg.secondaryItems.map((entry) => (
+                      <div
+                        key={entry.label}
+                        className="rounded-lg bg-white border border-[#DCE8F3] p-2.5 sm:p-3"
+                      >
+                        <div className="flex items-center justify-between gap-1">
+                          <p className="text-[11px] font-extrabold text-[#0866D9]">
+                            {entry.label}
+                          </p>
+                          {entry.status && (
+                            <span className="rounded bg-[#E4F3FF] px-1.5 py-0.5 text-[9.5px] font-bold text-[#102A56]">
+                              {entry.status}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-1 text-[11px] sm:text-[11.5px] text-[#26364A] leading-snug">
+                          {entry.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Demo Footer Contact Bar */}
+                <div className="rounded-xl bg-[#102A56] text-white px-3.5 sm:px-4 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px]">
+                  <span className="font-bold">{cfg.brand}</span>
+                  <span className="text-[#E4F3FF] truncate">
+                    {cfg.footerContact}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Subtle Laptop Base Under Browser Showcase on Mobile & Tablet */}
+          <div className="w-[96%] h-2.5 rounded-b-xl bg-gradient-to-b from-[#DCE8F3] to-[#536477]/45 flex items-center justify-center shadow-xs">
+            <span className="w-16 h-[3px] rounded-full bg-[#102A56]/30" />
+          </div>
         </div>
 
-        {/* Companion Mobile Responsive Phone Preview */}
+        {/* Companion Mobile Responsive Phone Preview (Wide Desktop) */}
         <div className="hidden xl:flex xl:col-span-3 justify-center">
           <div className="w-[248px] rounded-[30px] bg-[#102A56] p-2.5 shadow-[0_18px_40px_rgba(16,42,86,0.18)] border border-[#DCE8F3]">
-            {/* Phone notch */}
             <div className="w-20 h-3.5 mx-auto mb-2 rounded-full bg-white/15" />
 
-            {/* Phone Screen */}
             <div className="rounded-[22px] bg-white overflow-hidden border border-[#DCE8F3]">
-              {/* Mobile Nav */}
               <div className="px-3 py-2 border-b border-[#DCE8F3] flex items-center justify-between">
                 <span className="text-[10px] font-extrabold text-[#102A56] truncate">
                   {cfg.brand}
@@ -831,7 +859,6 @@ function DetailShowcasePreview({
                 </span>
               </div>
 
-              {/* Mobile Hero Image */}
               <div className="relative h-28 w-full">
                 <Image
                   src={service.image}
@@ -851,7 +878,6 @@ function DetailShowcasePreview({
                 </div>
               </div>
 
-              {/* Mobile Body */}
               <div className="p-3 space-y-2.5 bg-[#FAFBF8]">
                 <span className="block w-full text-center rounded-full bg-[#102A56] text-white text-[10px] font-bold py-1.5">
                   {cfg.heroCta}
@@ -918,4 +944,3 @@ function DetailMiniIcon({ slug }: { slug: string }) {
       return <Phone className={cls} aria-hidden="true" />;
   }
 }
-
