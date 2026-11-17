@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #102A56;
+  --color-navy-dark: #0B1F40;
+  --color-primary-blue: #0866D9;
+  --color-primary-blue-dark: #0652B0;
+  --color-light-blue: #E4F3FF;
+  --color-light-blue-soft: #F1F8FF;
+  --color-milk-white: #FAFBF8;
+  --color-pure-white: #FFFFFF;
+  --color-body-text: #26364A;
+  --color-secondary-text: #536477;
+  --color-border-blue: #DCE8F3;
+
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #FAFBF8;
+    color: #26364A;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid #0866D9;
+    outline-offset: 2px;
+  }
+}
+
+/* Offset anchor sections beneath the sticky navbar */
+section[id] {
+  scroll-margin-top: 84px;
+}
+

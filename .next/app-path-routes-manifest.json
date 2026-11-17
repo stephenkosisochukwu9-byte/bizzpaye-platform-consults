@@ -1,0 +1,7 @@
+{
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/_not-found/page": "/_not-found",
+  "/page": "/",
+  "/services/page": "/services",
+  "/services/[slug]/page": "/services/[slug]"
+}
