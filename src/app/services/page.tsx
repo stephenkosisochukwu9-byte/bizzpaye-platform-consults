@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description:
     "Explore all 14 website development services and digital systems built by BIZZPAYE PLATFORM CONSULTS — from personal portfolios and corporate sites to e-commerce, school, booking, inventory and invoicing platforms.",
   alternates: {
-    canonical: "https://bizzpayeconsults.online/services",
+    canonical: "https://www.bizzpayeconsults.online/services",
   },
   openGraph: {
     title: `All Our Website Development Services | ${BUSINESS_INFO.name}`,
     description:
       "Find the right website or digital platform for your business, idea or organisation.",
-    url: "https://bizzpayeconsults.online/services",
+    url: "https://www.bizzpayeconsults.online/services",
     type: "website",
   },
 };
