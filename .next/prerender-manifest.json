@@ -1,35 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/sitemap.xml": {
-      "initialHeaders": {
-        "cache-control": "public, max-age=0, must-revalidate",
-        "content-type": "application/xml",
-        "x-next-cache-tags": "_N_T_/layout,_N_T_/sitemap.xml/layout,_N_T_/sitemap.xml/route,_N_T_/sitemap.xml"
-      },
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/sitemap.xml",
-      "dataRoute": null,
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/_not-found": {
       "initialStatus": 404,
       "experimentalBypassFor": [
@@ -79,6 +50,35 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/robots.txt": {
+      "initialHeaders": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/robots.txt/layout,_N_T_/robots.txt/route,_N_T_/robots.txt"
+      },
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/robots.txt",
+      "dataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/services": {
       "experimentalBypassFor": [
         {
@@ -94,6 +94,35 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/services",
       "dataRoute": "/services.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/sitemap.xml": {
+      "initialHeaders": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "application/xml",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/sitemap.xml/layout,_N_T_/sitemap.xml/route,_N_T_/sitemap.xml"
+      },
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/sitemap.xml",
+      "dataRoute": null,
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -469,8 +498,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "2fb10a3e940ea48112b41b138cf82906",
-    "previewModeSigningKey": "e06da9eeb4ca0a7881ef44bac3437cdac2a23a9bbcaf9da6ef3afe34549e62d3",
-    "previewModeEncryptionKey": "0d4d85fae98fa9b78f593afa4450cc1970fe522f58eb6875533ee71557b8bfad"
+    "previewModeId": "d5a416b3e053972a30cc4b8783fce87f",
+    "previewModeSigningKey": "1f60f4f1c12e4e5c9e89b519c614ae9acbac7a80d0eedc10110f7e5c36cbc5d5",
+    "previewModeEncryptionKey": "5605b2e2fd6856015a13612c6a2a7072b17db0aa0414edfb2cc1e98d1e1b9d59"
   }
 }

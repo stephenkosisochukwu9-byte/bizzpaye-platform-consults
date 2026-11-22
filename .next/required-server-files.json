@@ -290,7 +290,20 @@
     "configFileName": "next.config.ts",
     "turbopack": {
       "root": "C:\\Users\\hp-1030\\bizzpaye web"
-    }
+    },
+    "_originalRedirects": [
+      {
+        "source": "/:path*",
+        "has": [
+          {
+            "type": "host",
+            "value": "www.bizzpayeconsults.online"
+          }
+        ],
+        "destination": "https://bizzpayeconsults.online/:path*",
+        "permanent": true
+      }
+    ]
   },
   "appDir": "C:\\Users\\hp-1030\\bizzpaye web",
   "relativeAppDir": "",

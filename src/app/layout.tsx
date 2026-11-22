@@ -5,6 +5,10 @@ import { Footer } from "@/components/Footer";
 import { BUSINESS_INFO } from "@/lib/contact";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bizzpayeconsults.online"),
+  alternates: {
+    canonical: "https://bizzpayeconsults.online",
+  },
   title: {
     default: `${BUSINESS_INFO.name} | Website Development Agency`,
     template: `%s`,
@@ -27,8 +31,16 @@ export const metadata: Metadata = {
     title: `${BUSINESS_INFO.name} | ${BUSINESS_INFO.taglineTitleCase}`,
     description:
       "We build modern, responsive and professional websites and digital platforms for individuals, businesses and organisations.",
-    type: "website",
+    url: "https://bizzpayeconsults.online",
     siteName: BUSINESS_INFO.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${BUSINESS_INFO.name} | Website Development Agency`,
+    description:
+      "We build modern, responsive and professional websites and digital platforms for individuals, businesses and organisations.",
   },
 };
 

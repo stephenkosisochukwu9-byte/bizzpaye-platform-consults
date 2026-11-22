@@ -10,6 +10,18 @@
       "internal": true,
       "statusCode": 308,
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.bizzpayeconsults.online"
+        }
+      ],
+      "destination": "https://bizzpayeconsults.online/:path*",
+      "statusCode": 308,
+      "regex": "^(?!/_next)(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
     }
   ],
   "headers": [],
@@ -40,6 +52,12 @@
       "regex": "^/_not\\-found(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
     },
     {
       "page": "/services",

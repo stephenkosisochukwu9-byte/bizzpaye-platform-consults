@@ -46,9 +46,13 @@ export async function generateMetadata({
   return {
     title: service.seoTitle,
     description: service.seoDescription,
+    alternates: {
+      canonical: `https://bizzpayeconsults.online/services/${slug}`,
+    },
     openGraph: {
       title: service.seoTitle,
       description: service.seoDescription,
+      url: `https://bizzpayeconsults.online/services/${slug}`,
       type: "website",
     },
   };

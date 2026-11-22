@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { SERVICES } from "@/data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://bizzpayeplatformconsults.com";
+  const baseUrl = "https://bizzpayeconsults.online";
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -29,4 +29,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticRoutes, ...serviceRoutes];
 }
-
